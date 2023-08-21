@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>React Local</title>
+  <style>
+    h1 {
+      color: DeepSkyBlue;
+    }		
+  </style>
+  <script type="application/javascript" src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script type="application/javascript" src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/node-fetch@3.3.2/src/index.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+<script type="text/babel">
+  // Obtain the root 
+  const rootElement = document.getElementById('root')
+  // Create a ES6 class component    
+  function MinimalReact() { 
+    const [message, setMessage] = React.useState('');
+    const [updated, setUpdated] = React.useState(message);
+    const [dadJoke, setDadJoke] = React.useState('Dad joke uninitialized :( Get your first dad joke!');
+
+    const handleChange = (event) => {
+      setMessage(event.target.value);
+    };
+
+    const handleClick = () => {
+      // 👇 "message" stores input field value
+      setUpdated(message);
+    };
+
+    const getDadJoke = async() => {
+          const response = await fetch(`https://icanhazdadjoke.com/`, {
+              headers: {
+                  Accept: "application/json"
+              }
+          });
+          const data = await response.json();
+          setDadJoke(data.joke);
+    };
+
+  // Use the render function to return JSX component 
+        console.log('test');
+        return (
+          <div className="shopping-list">
+            <h1>This is an internally styled header h1</h1>
+            <h6 style={{color: "orange"}}>This is an in-line styled header h6</h6>
+            <p id="demo">Hi.</p>
+        <input
+          type="text"
+          id="message"
+          name="message"
+          onChange={handleChange}
+          value={message}
+        />
+
+        <h2>Message: {message}</h2>
+
+        <h2>Updated: {updated}</h2>
+
+        <button onClick={handleClick}>Update</button>
+
+        <h2>Dad Joke: {dadJoke}</h2>
+
+        <button onClick={getDadJoke}>Get dad joke!</button>
+          </div>
+        );
+    }
+
+    // Use the ReactDOM.render to show your component on the browser
+    ReactDOM.render(
+      <MinimalReact />,
+      rootElement
+    )
+</script>
+</body>
+</html>
