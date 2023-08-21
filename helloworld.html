@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Example</title>
+		<!-- Internal style definition (CSS) -->
+		<style>
+			h4 {
+				color: DeepSkyBlue;
+			}		
+		</style>
+		<!-- External style definition (CSS) -->
+		<link rel="stylesheet" type="text/css" href="./helloworldstyle.css" media="screen" />
+    </head>
+    <body>
+		<h1>This is an externally styled header h1</h1>
+		<h4>This is an internally styled header h4</h4>
+		<h6 style="color:orange">This is an in-line styled header h6</h6>
+        <p>This is an example of a simple HTML page with one paragraph.</p>
+
+		<p id="demo">Hi.</p>
+
+		<!-- Internal JavaScript which will locate the "demo" paragraph above and change the contents -->
+		<script>
+			document.getElementById("demo").innerHTML = "This element is altered by Javascript!";
+		</script>
+		<!-- External Javascript example -->
+		<!-- <script src="script.js"></script> -->
+
+    </body>
+</html>
